@@ -31,6 +31,8 @@ spec:
       containers:
         - name: {{ .Values.label.app }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command: ["/bin/sh", "-c"]
+          args: ["chmod +x /opt/gochassis/Catalog && /opt/gochassis/Catalog"]
           env:
           - name: {{ .Values.env.name }}
             value: {{ .Values.env.value }}
